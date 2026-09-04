@@ -455,6 +455,11 @@
       if (opened) return;
       opened = true;
 
+      /* Calling play() directly inside this click handler is what makes
+         it work reliably on mobile (iOS/Android block autoplay unless
+         it's triggered by a direct tap like this one). */
+      bgm.play().catch(() => {});
+
       envelope.classList.add('open');
 
       setTimeout(() => {
